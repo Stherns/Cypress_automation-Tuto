@@ -1,0 +1,20 @@
+/// <reference types="Cypress" />
+describe('Re-registration functionality', () => {
+    it('Register registered user', () => {
+      cy.visit('https://parabank.parasoft.com/parabank/index.htm')
+      cy.get('#loginPanel > :nth-child(3) > a').click()
+      cy.get("input[id='customer.firstName']").type('Djhery_test')
+      cy.get("input[id='customer.lastName']").type('MOUSSAVOU_test')
+      cy.get("input[id='customer.address.street']").type('Sotega_test')
+      cy.get("input[id='customer.address.city']").type('Massy_test')
+      cy.get("input[id='customer.address.state']").type('France_test')
+      cy.get("input[id='customer.address.zipCode']").type('00000')
+      cy.get("input[id='customer.phoneNumber']").type('0750000000')
+      cy.get("input[id='customer.ssn']").type('0000000000')
+      cy.get("input[id='customer.username']").type('stherns_test')
+      cy.get("input[id='customer.password']").type('stherns_test')
+      cy.get("#repeatedPassword").type('stherns_test')
+      cy.get("[colspan='2'] > .button").click()
+      cy.get("span[id='customer.username.errors']").should('have.text', 'This username already exists.')
+    })
+  })
